@@ -1,3 +1,4 @@
+"use client"
 import { Menu, UlLeft, UlRight } from "./Menu";
 
 const MenuDesk = () => {
@@ -12,8 +13,8 @@ const MenuDesk = () => {
         <li>Contact</li>
       </UlLeft>
       <UlRight>
-        <li>{"estado no carrinho com menu suspenso"}</li>
-        <li>foto do perfil</li>
+        <li><img src="/images/icon-cart.svg" alt="cart"/><span>{}</span></li>
+        <li><img src="/images/image-avatar.png" alt="perfil" /></li>
       </UlRight>
     </Menu>
   )
