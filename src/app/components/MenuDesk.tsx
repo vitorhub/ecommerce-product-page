@@ -1,5 +1,5 @@
 "use client"
-import { Menu, UlLeft, UlRight } from "./Menu";
+import { Menu, UlLeft, UlRight } from "./MenuDesk.styles";
 
 const MenuDesk = () => {
   return (
