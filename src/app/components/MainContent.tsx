@@ -1,6 +1,9 @@
 "use client"
 
+import React from "react";
 import { useState } from "react";
+// import React, { useState } from 'react'
+
 import {
     SecaoImagens, SecaoValores, MainImage, SecondImage,
     Suspensa, Overlay
@@ -8,7 +11,14 @@ import {
 import SuspendedContent from "./SuspendedContent";
 import Image from "next/image"
 
+import { useDispatch, useSelector } from "react-redux";  // aki
+import { RootState } from "../redux";
+import { increment, alteraIndice } from '../redux/store'
+
 const MainContent = () => {
+    const dispatch = useDispatch();
+    const stock = useSelector((state: RootState) => state.stock);
+
     const arr = [
         "/images/image-product-1.jpg",
         "/images/image-product-2.jpg",
@@ -17,21 +27,25 @@ const MainContent = () => {
     ]
 
     const [altera, setAltera] = useState(0);
-    const [renderiza, setRenderiza] = useState(false)
+    const [renderiza, setRenderiza] = useState(false);
+
     function ChangeImg(e: number) {
         setAltera(e)
-    }
+        dispatch(alteraIndice())}
+    };
 
     function suspendImage() {
-        console.log("bundinha")
-        setRenderiza(!renderiza)
-    }
+        setRenderiza(!renderiza );
+    };
 
     return (
         <>
             <SecaoImagens>
+
                 <MainImage>
+                    { stock.counter }
                     <Image src={arr[altera]} alt="img" fill onClick={suspendImage} />
+                    <button onClick={()=> {dispatch(increment())}} />
                 </MainImage>
                 {renderiza ? (
                     <SuspendedContent/>

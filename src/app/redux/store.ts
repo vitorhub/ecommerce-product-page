@@ -12,9 +12,12 @@ const stock = createSlice(
             },
             decrement(state){
                 state.counter -+ 1
+            },
+            alteraIndice(state){
+                state.counter = state.counter
             }
         }
     }
 )
-export const { decrement, increment } = stock.actions
+export const { decrement, increment, alteraIndice } = stock.actions
 export default stock.reducer
