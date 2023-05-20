@@ -1,6 +1,5 @@
 "use client"
 
-import React from "react";
 import { useState } from "react";
 // import React, { useState } from 'react'
 
@@ -31,7 +30,7 @@ const MainContent = () => {
 
     function ChangeImg(e: number) {
         setAltera(e)
-        dispatch(alteraIndice())}
+        dispatch(alteraIndice(  {counter: e}  ))
     };
 
     function suspendImage() {

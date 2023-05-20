@@ -13,8 +13,8 @@ const stock = createSlice(
             decrement(state){
                 state.counter -+ 1
             },
-            alteraIndice(state){
-                state.counter = state.counter
+            alteraIndice(state) {
+                return state.counter // aqui quero que o redux altere o estado
             }
         }
     }
