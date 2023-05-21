@@ -14,7 +14,7 @@ const SuspendedContent = () => {
     return (
         <>
             <Suspensa>
-                <Image src={arr[altera]} alt="img" fill />
+                <Image src={"arr[altera]"} alt="img" fill />
             </Suspensa>
             <Overlay onClick={ ()=>"suspendImage"} />
         </>

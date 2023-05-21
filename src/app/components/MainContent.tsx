@@ -1,4 +1,9 @@
 "use client"
+import { useSelector, useDispatch } from "react-redux"; // modelo redux
+import {
+    atualizaBill, atualizaTip
+} from "../redux/store";   // aki
+
 
 import { useState } from "react";
 // import React, { useState } from 'react'
@@ -10,14 +15,14 @@ import {
 import SuspendedContent from "./SuspendedContent";
 import Image from "next/image"
 
-import { useDispatch, useSelector } from "react-redux";  // aki
-import { RootState } from "../redux";
-import { increment, alteraIndice } from '../redux/store'
+
 
 const MainContent = () => {
-    const dispatch = useDispatch();
-    const stock = useSelector((state: RootState) => state.stock);
-
+    
+    const dispatch = useDispatch() // dispatch dispara a action definida no store
+    const seletor: any = useSelector(state => state) // traz o estado definido no store do redux
+    let size = seletor.totalbill.length - 1 // pega o tamanho do total de estados
+    
     const arr = [
         "/images/image-product-1.jpg",
         "/images/image-product-2.jpg",
@@ -27,10 +32,10 @@ const MainContent = () => {
 
     const [altera, setAltera] = useState(0);
     const [renderiza, setRenderiza] = useState(false);
-
+    
     function ChangeImg(e: number) {
         setAltera(e)
-        dispatch(alteraIndice(  {counter: e}  ))
+        setTimeout(() => { dispatch(atualizaBill({ totalbill: e })) }, 2000);
     };
 
     function suspendImage() {
@@ -42,9 +47,7 @@ const MainContent = () => {
             <SecaoImagens>
 
                 <MainImage>
-                    { stock.counter }
                     <Image src={arr[altera]} alt="img" fill onClick={suspendImage} />
-                    <button onClick={()=> {dispatch(increment())}} />
                 </MainImage>
                 {renderiza ? (
                     <SuspendedContent/>

@@ -1,23 +1,32 @@
-import { createSlice } from '@reduxjs/toolkit'
+import {createStore , combineReducers } from 'redux'
 
-const stock = createSlice(
+interface Action {
+    totalbill?: number;
+    tip?: number | string;
+    npeople?: number;
+    tipbyperson?: number;
+    totalbyperson?: number;
+    type?: string;
+}
+
+const INITIAL_STATE = [
     {
-        name: 'stock',
-        initialState: {
-            counter: 0
-        },
-        reducers: {
-            increment(state){
-                state.counter += 1
-            },
-            decrement(state){
-                state.counter -+ 1
-            },
-            alteraIndice(state) {
-                return state.counter // aqui quero que o redux altere o estado
-            }
-        }
+        totalbill: 0,
+        tip: 0,
     }
-)
-export const { decrement, increment, alteraIndice } = stock.actions
-export default stock.reducer
+]
+
+export function reducerTotalBill (state = INITIAL_STATE, action: Action)
+    {   if(action.type === 'TOTAL_BILL'){ return [ ...state, action.totalbill ] } return state   }
+export function reducerTip (state = INITIAL_STATE, action: Action)
+    {   if(action.type === 'TIP'){ return [ ...state, action.tip ] } return state   }
+
+
+export const atualizaBill = (totalbill: Action) => {  return { type: 'TOTAL_BILL', totalbill  }  }
+export const atualizaTip = (tip: Action) => {  return { type: 'TIP', tip  }  }
+
+const rootReducer = combineReducers({
+    totalbill: reducerTotalBill,
+    tip: reducerTip,
+})
+export default createStore( rootReducer )
