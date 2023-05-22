@@ -1,28 +1,28 @@
 "use client"
 import { useSelector, useDispatch } from "react-redux"; // modelo redux
-import {
-    atualizaBill, atualizaTip
-} from "../redux/store";   // aki
+import {     reducerLayout, reducerAddCar  } from "../redux/store";   // aki
 
 
 import { useState } from "react";
-// import React, { useState } from 'react'
-
-import {
-    SecaoImagens, SecaoValores, MainImage, SecondImage,
-    Suspensa, Overlay
-} from "./MainContent.styles";
+import { SecaoImagens, SecaoValores, MainImage, 
+SecondImage, Suspensa, Overlay } from "./MainContent.styles";
 import SuspendedContent from "./SuspendedContent";
 import Image from "next/image"
 
 
+import { addCar } from "../redux/store"
+
 
 const MainContent = () => {
-    
-    const dispatch = useDispatch() // dispatch dispara a action definida no store
-    const seletor: any = useSelector(state => state) // traz o estado definido no store do redux
-    let size = seletor.totalbill.length - 1 // pega o tamanho do total de estados
-    
+    const [ estado, setEstado ] = useState({
+            name: 'ferrari',
+            url: 'https://images.pexels.com/'
+        })
+    const dispatch = useDispatch()
+    dispatch(addCar(estado))
+
+    const cars = useSelector((state: any) => state.cars)
+
     const arr = [
         "/images/image-product-1.jpg",
         "/images/image-product-2.jpg",
@@ -35,7 +35,7 @@ const MainContent = () => {
     
     function ChangeImg(e: number) {
         setAltera(e)
-        setTimeout(() => { dispatch(atualizaBill({ totalbill: e })) }, 2000);
+        setTimeout(() => { dispatch(addCar({ url: "e" })) }, 2000);
     };
 
     function suspendImage() {
