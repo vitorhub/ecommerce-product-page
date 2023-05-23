@@ -1,6 +1,7 @@
 import {createStore , combineReducers } from 'redux'
 
 interface Action {
+    number_image?:number;
     name?: string;
     url?: string;
     car?: string;
@@ -9,23 +10,21 @@ interface Action {
 
 const INITIAL_STATE = [
     {
+        number_image: 0,
         name: "BMW",
         url: "url"
     }
 ]
 
 export function reducerAddCar (state = INITIAL_STATE, action: Action){
-    if(action.type === 'ADD_CAR'){ return [ ...state, action.car ] } return state
-}
-export function reducerLayout (state = INITIAL_STATE, action: Action ){
-    if(action.type === 'SHOW_MESSAGE'){ return [ ...state, action.car ] } return state
+    if(action.type === 'ADD_CAR'){ return [ ...state, action.number_image ] } return state
 }
 
-export const addCar = (car: Action) => { return { type: 'ADD_CAR', car }  }
+export const addCar = (number_image: Action) => { return { type: 'ADD_CAR', number_image }  }
 
 const rootReducer = combineReducers({
-    cars: reducerAddCar,
-    layout: reducerLayout
+    estados: reducerAddCar,
+//  layout: reducerLayout
 })
 
 export default createStore( rootReducer)

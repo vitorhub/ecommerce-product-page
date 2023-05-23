@@ -1,6 +1,6 @@
 "use client"
 import { useSelector, useDispatch } from "react-redux"; // modelo redux
-import {     reducerLayout, reducerAddCar  } from "../redux/store";   // aki
+import {   reducerAddCar  } from "../redux/store";   // aki
 
 
 import { useState } from "react";
@@ -19,9 +19,10 @@ const MainContent = () => {
             url: 'https://images.pexels.com/'
         })
     const dispatch = useDispatch()
-    dispatch(addCar(estado))
+    // dispatch(addCar(estado))
 
-    const cars = useSelector((state: any) => state.cars)
+    const cars = useSelector((state: any) => state.estados)
+    console.log(cars[cars.length-1].number_image)
 
     const arr = [
         "/images/image-product-1.jpg",
@@ -35,11 +36,12 @@ const MainContent = () => {
     
     function ChangeImg(e: number) {
         setAltera(e)
-        setTimeout(() => { dispatch(addCar({ url: "e" })) }, 2000);
+        dispatch(addCar({number_image: e}))
+        // setTimeout(() => { dispatch(addCar({ number_image: e })) }, 2000);
     };
 
-    function suspendImage() {
-        setRenderiza(!renderiza );
+    function suspendImage(){
+        setRenderiza( !renderiza );
     };
 
     return (
@@ -50,7 +52,7 @@ const MainContent = () => {
                     <Image src={arr[altera]} alt="img" fill onClick={suspendImage} />
                 </MainImage>
                 {renderiza ? (
-                    <SuspendedContent/>
+                    <SuspendedContent set={renderiza } metodo={setRenderiza} />
                 ) : ""}
 
                 <SecondImage>
