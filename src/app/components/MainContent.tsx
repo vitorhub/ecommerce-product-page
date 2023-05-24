@@ -5,7 +5,7 @@ import {   reducerAddCar  } from "../redux/store";   // aki
 
 import { useState } from "react";
 import { SecaoImagens, SecaoValores, MainImage, 
-SecondImage, Suspensa, Overlay } from "./MainContent.styles";
+SecondImage } from "./MainContent.styles";
 import SuspendedContent from "./SuspendedContent";
 import Image from "next/image"
 
@@ -22,7 +22,7 @@ const MainContent = () => {
     // dispatch(addCar(estado))
 
     const cars = useSelector((state: any) => state.estados)
-    console.log(cars[cars.length-1].number_image)
+    // console.log(cars[cars.length-1].number_image)
 
     const arr = [
         "/images/image-product-1.jpg",
